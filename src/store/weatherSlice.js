@@ -1,16 +1,14 @@
-// src/store/weatherSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem('weatherAppConfig');
     if (serializedState === null) {
-      // Domyślny stan: Celsjusz, brak ulubionych, brak historii wyszukiwania
       return { unit: 'C', favorites: [], searchedCities: [] };
     }
     const loadedState = JSON.parse(serializedState);
     
-    // Zabezpieczenie: gdyby stary zapis nie miał pola searchedCities, dodajemy je
+    // gdyby stary zapis nie miał pola searchedCities
     if (!loadedState.searchedCities) loadedState.searchedCities = [];
     
     return loadedState;
@@ -40,19 +38,18 @@ const weatherSlice = createSlice({
       }
       localStorage.setItem('weatherAppConfig', JSON.stringify(state));
     },
-    // 👇 NOWA AKCJA: Dodawanie wyszukanego miasta do listy głównej
+    // Dodawanie wyszukanego miasta do listy głównej
     addSearchedCity: (state, action) => {
       const newCity = action.payload;
-      // Sprawdzamy duplikaty, żeby nie dodać tego samego miasta dwa razy
+      // Sprawdzamy duplikaty
       const exists = state.searchedCities.some(city => city.id === newCity.id);
       
       if (!exists) {
         state.searchedCities.push(newCity);
-        // Zapisujemy też do LocalStorage, żeby lista przetrwała odświeżenie strony
+        // Zapisujemy do LocalStorage
         localStorage.setItem('weatherAppConfig', JSON.stringify(state));
       }
     },
-    // Opcjonalnie: Czyszczenie listy (może się przydać w przyszłości)
     removeSearchedCity: (state, action) => {
       state.searchedCities = state.searchedCities.filter(city => city.id !== action.payload);
       localStorage.setItem('weatherAppConfig', JSON.stringify(state));
@@ -60,6 +57,5 @@ const weatherSlice = createSlice({
   },
 });
 
-// Eksportujemy nową akcję addSearchedCity
 export const { setUnit, toggleFavorite, addSearchedCity, removeSearchedCity } = weatherSlice.actions;
 export default weatherSlice.reducer;

@@ -1,14 +1,11 @@
-/* src/App.css */
-
-/* 1. Główny kontener aplikacji */
 .weather-app-container {
   position: relative;
   min-height: 100vh; /* Minimum cała wysokość ekranu */
   width: 100%;
-  /* overflow: hidden; -> Usuwamy to, żeby dało się przewijać stronę na telefonach */
+  overflow: hidden;
 }
 
-/* 2. Warstwa tła z obrazkiem */
+/* Warstwa tła z obrazkiem */
 .weather-bg-image {
   position: fixed; /* Fixed sprawia, że tło stoi w miejscu przy przewijaniu */
   top: 0;
@@ -16,7 +13,6 @@
   width: 100%;
   height: 100%;
   
-  /* Link do przykładowego zdjęcia (możesz podmienić na lokalny plik) */
   background-image: url('/tlo.jpg');
   
   background-size: cover;
@@ -24,21 +20,20 @@
   z-index: -2;
 }
 
-/* 3. Warstwa "szkła" (Overlay) */
+/* Warstwa "szkła" */
 .weather-overlay {
-  position: fixed; /* Też fixed, żeby przyciemnienie było zawsze */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
   
-  /* Magia szkła: */
-  backdrop-filter: blur(8px); /* Rozmycie */
-  background-color: rgba(0, 0, 0, 0.5); /* Przyciemnienie */
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* 4. Kontener na treść (to co widzi użytkownik) */
+/* Kontener na treść */
 .content {
   position: relative;
   z-index: 1;
@@ -48,12 +43,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- Style tekstowe dla kontrastu --- */
 
-/* Nadpisujemy kolory nagłówków na białe, bo tło jest ciemne */
+/* kolory nagłówków na białe */
 .app-title, .page-title, h1, h2, h3, label {
   color: #ffffff !important; 
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Cień pod tekstem dla czytelności */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .controls-section {

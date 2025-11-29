@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -6,7 +5,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Details from './pages/Details';
 import UnitSwitcher from './components/UnitSwitcher';
-import './App.css'; // Import styli
+import './App.css';
 
 function App() {
   return (
@@ -15,13 +14,13 @@ function App() {
       {/* Główny kontener */}
       <div className="weather-app-container">
         
-        {/* Warstwa 1: Obrazek tła */}
+        {/* Obrazek tła */}
         <div className="weather-bg-image"></div>
         
-        {/* Warstwa 2: Efekt szkła/przyciemnienia */}
+        {/* Efekt szkła/przyciemnienia */}
         <div className="weather-overlay"></div>
         
-        {/* Warstwa 3: Właściwa treść aplikacji */}
+        {/* Właściwa treść aplikacji */}
         <div className="content">
           
           <h1 className="app-title">Aplikacja Pogodowa 🌤️</h1>

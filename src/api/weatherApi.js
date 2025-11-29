@@ -29,7 +29,7 @@ export const fetchCitySuggestions = async (query) => {
 // Funkcja 3: Pobieranie prognozy na 5 dni
 export const fetchForecast = async (city) => {
   try {
-    // Endpoint /forecast zwraca dane co 3 godziny na 5 dni
+    //  zwraca dane co 3 godziny na 5 dni
     const response = await axios.get(`${BASE_URL}/forecast?q=${city}&units=metric&lang=pl&appid=${API_KEY}`);
     return response.data;
   } catch (error) {

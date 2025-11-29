@@ -1,6 +1,6 @@
 # Aplikacja Pogodowa (React + Redux)
 
-Projekt zaliczeniowy na przedmiot Programowanie Frontend.
+Projekt zaliczeniowy na przedmiot Programowanie Front-end.
 
 ## Funkcjonalności:
 - Wyświetlanie pogody dla wyszukanych miast.

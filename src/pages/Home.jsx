@@ -1,5 +1,4 @@
-// src/pages/Home.jsx
-import React, { useState, useEffect, useMemo, useCallback } from 'react'; // <--- 1. Importujemy useCallback i useMemo
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../components/SearchBar';
 import WeatherCard from '../components/WeatherCard';
@@ -11,11 +10,6 @@ const Home = () => {
   const citiesData = useSelector((state) => state.weather.searchedCities);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
-
-  // --- Implementacja useMemo ---
-  // Sortujemy miasta tak, aby ostatnio dodane były na początku listy (odwracamy tablicę).
-  // useMemo sprawia, że sortowanie wykona się TYLKO wtedy, gdy zmieni się 'citiesData'.
-  // Gdy wpiszesz coś w searchbarze (zmieni się stan formularza), ta lista nie będzie mielona od nowa.
   const sortedCities = useMemo(() => {
     return [...citiesData].reverse();
   }, [citiesData]);
@@ -46,8 +40,7 @@ const Home = () => {
       }
     };
     loadDefaults();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // useEffect wykonuje się tylko raz (mount)
+  }, []);
 
   const handleSearch = async (city) => {
     setError('');
@@ -66,7 +59,7 @@ const Home = () => {
     }
   };
 
-  // --- Implementacja useCallback ---
+  // Implementacja useCallback 
   const handleRemove = useCallback((cityId) => {
     dispatch(removeSearchedCity(cityId));
   }, [dispatch]);
@@ -79,12 +72,12 @@ const Home = () => {
       {error && <p className="error-msg">{error}</p>}
       
       <div className="cards-grid">
-        {sortedCities.length > 0 ? ( // Używamy posortowanej listy z useMemo
+        {sortedCities.length > 0 ? ( // lista z UseMemo
           sortedCities.map((city) => (
             <WeatherCard 
               key={city.id} 
               weather={city} 
-              onDelete={handleRemove} // Przekazujemy zoptymalizowaną funkcję
+              onDelete={handleRemove}
             />
           ))
         ) : (

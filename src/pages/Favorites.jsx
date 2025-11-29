@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import WeatherCard from '../components/WeatherCard';
-import './Home.css'; // Używamy tych samych stylów
+import './Home.css';
 
 const Favorites = () => {
   const favorites = useSelector((state) => state.weather.favorites);

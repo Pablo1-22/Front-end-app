@@ -29,7 +29,7 @@ const WeatherCard = ({ weather, onDelete }) => {
           <button 
             onClick={() => dispatch(toggleFavorite(weather))}
             className="icon-btn"
-            style={{ color: isFavorite ? 'gold' : '#ccc' }} // Kolor dynamiczny zostawiamy inline
+            style={{ color: isFavorite ? 'gold' : '#ccc' }}
             title={isFavorite ? "Usuń z ulubionych" : "Dodaj do ulubionych"}
           >
             ★

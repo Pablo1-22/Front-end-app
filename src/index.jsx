@@ -8,7 +8,6 @@ import { store } from './store/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* 2. Owiń komponent App w Provider */}
     <Provider store={store}>
       <App />
     </Provider>
