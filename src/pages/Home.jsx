@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+// src/pages/Home.jsx
+import React, { useState, useEffect, useMemo, useCallback } from 'react'; // <--- 1. Importujemy useCallback i useMemo
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../components/SearchBar';
 import WeatherCard from '../components/WeatherCard';
 import { fetchWeatherByCity } from '../api/weatherApi';
 import { addSearchedCity, removeSearchedCity } from '../store/weatherSlice';
-import './Home.css'; // <-- Import
+import './Home.css';
 
 const Home = () => {
   const citiesData = useSelector((state) => state.weather.searchedCities);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+
+  // --- Implementacja useMemo ---
+  // Sortujemy miasta tak, aby ostatnio dodane były na początku listy (odwracamy tablicę).
+  // useMemo sprawia, że sortowanie wykona się TYLKO wtedy, gdy zmieni się 'citiesData'.
+  // Gdy wpiszesz coś w searchbarze (zmieni się stan formularza), ta lista nie będzie mielona od nowa.
+  const sortedCities = useMemo(() => {
+    return [...citiesData].reverse();
+  }, [citiesData]);
 
   const fetchAndAddCity = async (cityName) => {
     const data = await fetchWeatherByCity(cityName);
@@ -37,15 +46,18 @@ const Home = () => {
       }
     };
     loadDefaults();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // useEffect wykonuje się tylko raz (mount)
 
   const handleSearch = async (city) => {
     setError('');
     const alreadyOnList = citiesData.some(item => item.city.toLowerCase() === city.toLowerCase());
+    
     if (alreadyOnList) {
       setError('To miasto jest już na liście!');
       return;
     }
+    
     const data = await fetchWeatherByCity(city);
     if (data) {
       await fetchAndAddCity(city);
@@ -54,9 +66,10 @@ const Home = () => {
     }
   };
 
-  const handleRemove = (cityId) => {
+  // --- Implementacja useCallback ---
+  const handleRemove = useCallback((cityId) => {
     dispatch(removeSearchedCity(cityId));
-  };
+  }, [dispatch]);
 
   return (
     <div className="page-container">
@@ -66,12 +79,12 @@ const Home = () => {
       {error && <p className="error-msg">{error}</p>}
       
       <div className="cards-grid">
-        {citiesData.length > 0 ? (
-          citiesData.map((city) => (
+        {sortedCities.length > 0 ? ( // Używamy posortowanej listy z useMemo
+          sortedCities.map((city) => (
             <WeatherCard 
               key={city.id} 
               weather={city} 
-              onDelete={handleRemove} 
+              onDelete={handleRemove} // Przekazujemy zoptymalizowaną funkcję
             />
           ))
         ) : (
