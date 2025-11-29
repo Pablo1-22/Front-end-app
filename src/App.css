@@ -1,21 +1,59 @@
 /* src/App.css */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7f6;
-  color: #333;
+
+/* 1. Główny kontener aplikacji */
+.weather-app-container {
+  position: relative;
+  min-height: 100vh; /* Minimum cała wysokość ekranu */
+  width: 100%;
+  /* overflow: hidden; -> Usuwamy to, żeby dało się przewijać stronę na telefonach */
 }
 
-.app-container {
+/* 2. Warstwa tła z obrazkiem */
+.weather-bg-image {
+  position: fixed; /* Fixed sprawia, że tło stoi w miejscu przy przewijaniu */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Link do przykładowego zdjęcia (możesz podmienić na lokalny plik) */
+  background-image: url('/tlo.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+/* 3. Warstwa "szkła" (Overlay) */
+.weather-overlay {
+  position: fixed; /* Też fixed, żeby przyciemnienie było zawsze */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  
+  /* Magia szkła: */
+  backdrop-filter: blur(8px); /* Rozmycie */
+  background-color: rgba(0, 0, 0, 0.5); /* Przyciemnienie */
+}
+
+/* 4. Kontener na treść (to co widzi użytkownik) */
+.content {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.app-title {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 20px;
+/* --- Style tekstowe dla kontrastu --- */
+
+/* Nadpisujemy kolory nagłówków na białe, bo tło jest ciemne */
+.app-title, .page-title, h1, h2, h3, label {
+  color: #ffffff !important; 
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Cień pod tekstem dla czytelności */
 }
 
 .controls-section {

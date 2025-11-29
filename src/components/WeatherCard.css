@@ -28,8 +28,9 @@
 
 .city-name {
   margin: 0;
-  font-size: 1.2rem;
-  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2c3e50 !important;
 }
 
 .card-actions {
@@ -71,14 +72,15 @@
   margin: 0;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #333;
+  color: #000000 !important;
 }
 
 .condition {
   margin: 0 0 15px 0;
   font-style: italic;
   text-transform: capitalize;
-  color: #7f8c8d;
+  color: #555555 !important; 
+  font-weight: 600;
 }
 
 .card-details {
