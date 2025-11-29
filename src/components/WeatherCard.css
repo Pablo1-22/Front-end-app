@@ -1,0 +1,109 @@
+/* src/components/WeatherCard.css */
+.weather-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 15px;
+  width: 240px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.city-name {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.card-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 4px;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.2);
+}
+
+.icon-btn.delete {
+  color: #ff6b6b;
+}
+
+.card-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.weather-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.temperature {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.condition {
+  margin: 0 0 15px 0;
+  font-style: italic;
+  text-transform: capitalize;
+  color: #7f8c8d;
+}
+
+.card-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  background-color: #f8f9fa;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.details-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #3498db;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.details-btn:hover {
+  background-color: #2980b9;
+}

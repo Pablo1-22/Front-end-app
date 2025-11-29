@@ -1,0 +1,26 @@
+/* src/components/Navbar.css */
+.navbar {
+  padding: 15px;
+  background-color: #34495e;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.nav-link {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #3498db;
+}

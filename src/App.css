@@ -1,3 +1,25 @@
-.App {
+/* src/App.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-title {
   text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.controls-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }

@@ -1,3 +1,32 @@
-.header {
-    color: #097969;
+/* src/pages/Home.css */
+.page-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.page-title {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.error-msg {
+  color: #e74c3c;
+  background-color: #fadbd8;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.empty-msg {
+  color: #7f8c8d;
+  margin-top: 30px;
+  font-size: 1.1rem;
 }

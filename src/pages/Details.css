@@ -1,3 +1,130 @@
-.header {
-    color: #088F8F;
+/* src/pages/Details.css */
+.details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #2980b9;
+}
+
+.details-city-name {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.current-weather-card {
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+.main-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.main-icon {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.temp-huge {
+  font-size: 5rem;
+  margin: 0;
+  font-weight: 300;
+  color: #333;
+}
+
+.weather-desc {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: #555;
+  margin: 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+.detail-item {
+  background: rgba(255,255,255,0.7);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.detail-value {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.forecast-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.forecast-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.forecast-item {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 15px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.forecast-item:hover {
+  transform: translateY(-3px);
+}
+
+.forecast-date {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.forecast-temp {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2c3e50;
 }

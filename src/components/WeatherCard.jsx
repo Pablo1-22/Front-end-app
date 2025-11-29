@@ -1,72 +1,71 @@
-// src/components/WeatherCard.jsx
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavorite } from '../store/weatherSlice';
+import { Link } from 'react-router-dom';
+import './WeatherCard.css';
 
-const WeatherCard = ({ weather }) => {
-  // 1. Pobieramy aktualną jednostkę z Reduxa (C, F lub K)
+const WeatherCard = ({ weather, onDelete }) => {
   const unit = useSelector((state) => state.weather.unit);
+  const favorites = useSelector((state) => state.weather.favorites);
+  const dispatch = useDispatch();
 
-  // 2. Funkcja przeliczająca temperaturę (zakładamy, że dane wejściowe są w Celsjuszach)
+  const isFavorite = favorites.some(city => city.id === weather.id);
+
   const convertTemp = (tempInC) => {
     if (unit === 'F') return Math.round((tempInC * 1.8) + 32);
     if (unit === 'K') return Math.round(tempInC + 273.15);
-    return tempInC; // Domyślnie Celsjusz
+    return Math.round(tempInC);
   };
 
-  // 3. Budujemy URL do ikony (korzystamy z darmowych ikon OpenWeatherMap)
-  // Jeśli nie mamy kodu ikony, używamy domyślnego słoneczka
   const iconUrl = weather.icon 
     ? `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
     : 'http://openweathermap.org/img/wn/01d@2x.png';
 
   return (
-    <div style={styles.card}>
-      <h3>{weather.city}</h3>
-      <div style={styles.row}>
-        <img src={iconUrl} alt="pogoda" style={{ width: '50px', height: '50px' }} />
-        <h2 style={{ margin: 0 }}>
-          {convertTemp(weather.temp)} °{unit}
+    <div className="weather-card">
+      <div className="card-header">
+        <h3 className="city-name">{weather.city}</h3>
+        <div className="card-actions">
+          <button 
+            onClick={() => dispatch(toggleFavorite(weather))}
+            className="icon-btn"
+            style={{ color: isFavorite ? 'gold' : '#ccc' }} // Kolor dynamiczny zostawiamy inline
+            title={isFavorite ? "Usuń z ulubionych" : "Dodaj do ulubionych"}
+          >
+            ★
+          </button>
+
+          {onDelete && (
+            <button 
+              onClick={() => onDelete(weather.id)}
+              className="icon-btn delete"
+              title="Usuń z listy"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className="card-main">
+        <img src={iconUrl} alt="pogoda" className="weather-icon" />
+        <h2 className="temperature">
+          {convertTemp(weather.temp)}°{unit}
         </h2>
       </div>
-      <p style={{ margin: '5px 0', fontStyle: 'italic' }}>{weather.condition}</p>
       
-      {/* Sekcja szczegółów (wymagana na ocenę 3.0) */}
-      <div style={styles.details}>
-        <span>💧 Deszcz: {weather.rain}%</span>
-        <span>💨 Wiatr: {weather.wind} km/h</span>
+      <p className="condition">{weather.condition}</p>
+      
+      <div className="card-details">
+        <span>💧 {weather.rain}%</span>
+        <span>💨 {weather.wind} km/h</span>
       </div>
+
+      <Link to={`/details/${weather.city}`} className="details-btn">
+        Szczegóły ➡
+      </Link>
     </div>
   );
-};
-
-// Proste style bezpośrednio w pliku (żeby było szybciej)
-const styles = {
-  card: {
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    padding: '15px',
-    margin: '10px',
-    width: '200px',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-    backgroundColor: 'white',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  row: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '10px'
-  },
-  details: {
-    marginTop: '10px',
-    fontSize: '0.8rem',
-    color: '#666',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '4px'
-  }
 };
 
 export default WeatherCard;

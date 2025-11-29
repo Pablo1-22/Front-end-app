@@ -1,0 +1,25 @@
+/* src/components/UnitSwitcher.css */
+.unit-switcher {
+  margin: 0;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.unit-label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.unit-select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  outline: none;
+}
